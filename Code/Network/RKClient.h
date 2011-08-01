@@ -139,6 +139,8 @@ NSString* RKPathAppendQueryParams(NSString* resourcePath, NSDictionary* queryPar
 	BOOL _serviceUnavailableAlertEnabled;
 	RKRequestCache* _cache;
 	RKRequestCachePolicy _cachePolicy;
+	NSMutableSet *_additionalRootCertificates;
+    BOOL _disableCertificateValidation;
     
     id<ZanoxAuthDelegate> _zanoxAuth;
 }
@@ -157,6 +159,22 @@ NSString* RKPathAppendQueryParams(NSString* resourcePath, NSDictionary* queryPar
  */
 @property(nonatomic, readonly) NSMutableDictionary* HTTPHeaders;
 
+#ifdef RESTKIT_SSL_VALIDATION
+/**
+ * A set of additional certificates to be used in evaluating server
+ * SSL certificates.
+ */
+@property(nonatomic, readonly) NSSet* additionalRootCertificates;
+#endif
+
+/**
+ * Accept all SSL certificates. This is a potential security exposure,
+ * and should be used ONLY while debugging in a controlled environment.
+ *
+ * *Default*: _NO_
+ */
+@property(nonatomic, assign) BOOL disableCertificateValidation;
+
 /**
  *  Will check for network connectivity to the host specified in the baseURL
  *
@@ -174,6 +192,16 @@ NSString* RKPathAppendQueryParams(NSString* resourcePath, NSDictionary* queryPar
  * @see HTTPHeaders
  */
 - (void)setValue:(NSString*)value forHTTPHeaderField:(NSString*)header;
+
+#ifdef RESTKIT_SSL_VALIDATION
+/**
+ * Adds an additional certificate that will be used to evaluate server SSL certs
+ *
+ * @param cert The HTTP header to add
+ * @see additionalRootCertificates
+ */
+- (void)addRootCertificate:(SecCertificateRef)cert;
+#endif
 
 /////////////////////////////////////////////////////////////////////////
 /// @name HTTP Authentication

@@ -10,6 +10,7 @@
 
 @interface Person : NSObject
 @property (nonatomic, retain) NSString* name;
+@property (nonatomic, retain) NSArray* friends;
 @end
 
 @interface Boy : Person

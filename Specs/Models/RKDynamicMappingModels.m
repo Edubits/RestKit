@@ -10,6 +10,7 @@
 
 @implementation Person
 @synthesize name;
+@synthesize friends;
 @end
 
 @implementation Girl
