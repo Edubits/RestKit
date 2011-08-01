@@ -111,16 +111,6 @@
  */
 - (RKObjectMapping*)serializationMappingForClass:(Class)objectClass;
 
-<<<<<<< HEAD
-/**
- Sets a dynamic object mapping for the specified callback. Dynamic mappings can be used to determine the appropriate
- type of mapping based on the data being mapped
- 
- @see RKDynamicObjectMapping
- */
-// TODO: Should we just tag dynamic and concrete mappings with a protocol so we don't need this method???
-- (void)setDynamicMapping:(RKDynamicObjectMapping*)dynamicMapping forKeyPath:(NSString*)keyPath;
-=======
 ////////////////////////////////////////////////////////////////////////////////////
 /// @name Deprecated Object Mapping Methods
 
@@ -146,6 +136,5 @@
  @deprecated
  */
 - (NSDictionary*)objectMappingsByKeyPath DEPRECATED_ATTRIBUTE;
->>>>>>> originalFork
 
 @end
