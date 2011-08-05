@@ -31,7 +31,9 @@
 }
 
 - (void)setMapping:(RKObjectMapping*)mapping forKeyPath:(NSString*)keyPath {
-    [_mappingsByKeyPath setValue:mapping forKey:keyPath];
+    @synchronized(self) {
+        [_mappingsByKeyPath setValue:mapping forKey:keyPath];
+    }
 }
 
 - (id<RKObjectMappingDefinition>)mappingForKeyPath:(NSString*)keyPath {

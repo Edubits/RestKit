@@ -107,6 +107,7 @@ BOOL RKObjectIsValueEqualToValue(id sourceValue, id destinationValue) {
         if ([@"ISO8601" isEqualToString:formatString]) {
             ISO8601DateFormatter *formatter8601 = [[ISO8601DateFormatter alloc] init];
             date = [formatter8601 dateFromString:string];
+            [formatter8601 release];
         } else {
             date = [formatter dateFromString:string];
         }
